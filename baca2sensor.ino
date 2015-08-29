@@ -4,8 +4,8 @@
 // Sumber
 
 #include "DHT.h"
-// LCD
-// LCD RS=3, EN=4, DS4=5, DS5=6, DS6=7, DS7=8
+
+// Panggil LiLCD RS=3, EN=4, DS4=5, DS5=6, DS6=7, DS7=8
 #include <LiquidCrystal.h>
 LiquidCrystal lcd( 3, 4, 5, 6, 7, 8);
 
