@@ -1,32 +1,21 @@
-// DHT code from:
-// Example testing sketch for various DHT humidity/temperature sensors
-// Written by ladyada, public domain
-// Sumber
-
+// Panggil Liblary Sensor
 #include "DHT.h"
-
-// Panggil LiLCD RS=3, EN=4, DS4=5, DS5=6, DS6=7, DS7=8
+// LCD
+// Panggil Liblary LCD, RS=3, EN=4, DS4=5, DS5=6, DS6=7, DS7=8
 #include <LiquidCrystal.h>
 LiquidCrystal lcd( 3, 4, 5, 6, 7, 8);
 
+//Macem macem variabel
 #define DHTPIN1 13    // what pin we're connected to
 #define DHTPIN2 12
 #define RelayFan1 11
 #define RelayFan2 10
 #define RelaySedot 9
-// Uncomment whatever type you're using!
-//#define DHTTYPE DHT11   // DHT 11
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
-//#define DHTTYPE DHT21   // DHT 21 (AM2301)
+
 DHT sensor1(DHTPIN1, DHTTYPE);
 DHT sensor2(DHTPIN2, DHTTYPE);
 
-// Global Variables Defined
-// This is so we can see them in all functions
-// t is the temperature, h is the humidity
-// Timer is used to reduce the frequency of reading the DHT11 - I found reading it every loop
-// caused timing issues with the Ethernet.
-// The Animation loop is to provide some bling to the LCD diaplay
 
 int suhu1 = 0;
 int lembab1 = 0;
@@ -34,19 +23,22 @@ int suhu2 = 0;
 int lembab2 = 0;
 
 void setup () {
-   
+  //Setting mode pin Relay jadi output
   pinMode(RelayFan1, OUTPUT);
   pinMode(RelayFan2, OUTPUT);
   pinMode(RelaySedot, OUTPUT);
-  digitalWrite(RelayFan1, HIGH);
-  digitalWrite(RelayFan2, HIGH);
-  digitalWrite(RelaySedot, HIGH);
-  
+  //Setting pin Relay jadi LOW / Mati
+  digitalWrite(RelayFan1, LOW);
+  digitalWrite(RelayFan2, LOW);
+  digitalWrite(RelaySedot, LOW);
+  //Setting memakai lcd 16 x 2
   lcd.begin(16, 2);
 
+  // Variable starp up
   char teks1[] = "Tugas Akhir, Rancangan Miniatur Green House Suhu dan Kelembaban dengan Menggunkan Mikrocontroller";
-
+  //set lcd cursor pada baris dan kolom
   lcd.setCursor(0, 0);
+
   lcd.print("Dean");
 
   lcd.autoscroll();
@@ -64,18 +56,14 @@ void setup () {
 
   sensor1.begin();
   sensor2.begin();
-  
-     
-   
-  
 }
-void 
-//  Here we get values from the DHT11
- void StatusSensor1()
+
+// Menampilkan pembacaan sensor satu
+void StatusSensor1()
 {
   suhu1 = sensor1.readHumidity();
   lembab1 = sensor1.readTemperature();
-  
+
   lcd.setCursor(0, 0);
   lcd.print("Suhu1: ");
   lcd.print(suhu1);
@@ -84,10 +72,11 @@ void
   lcd.print("Lembab2: ");
   lcd.print(lembab1);
   lcd.print("%");
-  
-   
+
+
 }
- void StatusSensor2()
+Menampilkan pembacaan sensor dua
+void StatusSensor2()
 {
   suhu2 = sensor2.readHumidity();
   lembab2 = sensor2.readTemperature();
@@ -100,10 +89,10 @@ void
   lcd.print("Lembab2: ");
   lcd.print(lembab2);
   lcd.print("%");
-   
+
 }
 
-
+//mode loop
 void loop () {
 
   StatusSensor1();
