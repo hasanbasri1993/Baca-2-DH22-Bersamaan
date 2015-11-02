@@ -1,4 +1,6 @@
 // Panggil Liblary Sensor
+//download liblary nya
+// https://github.com/adafruit/DHT-sensor-library/archive/master.zip
 #include "DHT.h"
 #include <Wire.h>
 // Panggil Liblary LCD, RS=3, EN=4, DS4=5, DS5=6, DS6=7, DS7=8
